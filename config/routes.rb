@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :bites, only: :new
+  resources :bites, only: [:create, :new]
 
   root to: "bites#new"
 

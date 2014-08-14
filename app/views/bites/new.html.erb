@@ -1,2 +1,22 @@
-<h1>Bites#new</h1>
-<p>Find me in app/views/bites/new.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="text-center">Bite someone.</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4">
+    <%= form_tag bites_path @new_bite, html: { :role => "form" } do %>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">@</div>
+          <%= text_field_tag :username, "", class: "form-control", placeholder: "twitter username..." %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4"></div>
+</div>
