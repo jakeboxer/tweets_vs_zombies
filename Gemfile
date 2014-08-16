@@ -14,6 +14,8 @@ gem "omniauth",         "~> 1.2.2"
 gem "omniauth-twitter", "~> 1.0.1"
 
 group :development do
+  gem "dotenv-rails", "~> 0.11.1"
+
   ##
   # From default Rails gemfile
 
