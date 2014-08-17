@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_one :zombified_by,
-    -> { where(result: :success) },
+    -> { where(result: "success") },
     class_name:  "BiteAttempt",
     foreign_key: "target_id"
 

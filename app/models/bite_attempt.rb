@@ -1,9 +1,9 @@
 class BiteAttempt < ActiveRecord::Base
   enum result: [
     :success,
-    :already_zombie,
-    :awake,
-    :not_following
+    :was_already_zombie,
+    :was_awake,
+    :was_not_following_biter
   ]
 
   belongs_to :target, class_name: "User"
@@ -15,11 +15,11 @@ class BiteAttempt < ActiveRecord::Base
       bite.target = target
 
       bite.result = if target.zombie?
-        :already_zombie
+        :was_already_zombie
       elsif target.awake?
-        :awake
+        :was_awake
       elsif !target.following?(biter, client: client)
-        :not_following
+        :was_not_following_biter
       else
         :success
       end
@@ -32,10 +32,6 @@ class BiteAttempt < ActiveRecord::Base
       bite.target = user
       bite.result = :success
     end
-  end
-
-  def success?
-    result == :success
   end
 
   def failure?
