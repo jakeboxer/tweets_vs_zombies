@@ -1,14 +1,26 @@
 class BitesController < ApplicationController
   def create
-    # unless logged_in?
-    session[:last_bite_attempt_path] = bites_path(username: sanitized_username) unless false
-
     user = User.find_by(:username, sanitized_username)
 
-    render "bites/sign_in", :locals => {
-      :user     => user,
-      :username => sanitized_username
-    }
+    unless signed_in?
+      session[:last_bite_attempt_path] = bites_path(username: sanitized_username)
+
+      return render "bites/sign_in", :locals => {
+        :user     => user,
+        :username => sanitized_username
+      }
+    end
+
+    user ||= User.from_twitter(current_user.twitter_client.user(sanitized_username))
+    user.sync_with_twitter_if_necessary(current_user.twitter_client)
+
+    friendship = current_user.twitter_client.friendship(current_user.username, sanitized_username)
+
+    if user.biteable_by?(current_user, client: current_user.twitter_client)
+      # Bite
+    else
+      return render "bites/failed", :locals => { :user => user }
+    end
   end
 
   def new

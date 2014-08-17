@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  rescue_from Twitter::Error, with: :twitter_error
+
   def current_user
     @current_user ||= session[:user_id].present? && User.find(session[:user_id])
   end
@@ -12,4 +14,10 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
   helper_method :signed_in?
+
+  private
+
+  def twitter_error(error)
+    render :text => "<pre>#{ap error}</pre>"
+  end
 end

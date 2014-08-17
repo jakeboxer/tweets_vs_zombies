@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Sorry!</h1>
+
+    <h2>
+      @<%= user.username %>
+
+      <% if user.zombie? %>
+        is already a zombie.
+      <% elsif !user.biteable? %>
+        has tweeted in the last 12 hours, so they're still awake and prepared.
+      <% else %>
+        isn't following you. You can only bite people who once trusted you.
+      <% end %>
+    </h2>
+  </div>
+</div>
