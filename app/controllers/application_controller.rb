@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   private
 
   def twitter_error(error)
-    render :text => "<pre>#{ap error}</pre>"
+    render "/twitter_error", locals: { :error => error }
   end
 end
