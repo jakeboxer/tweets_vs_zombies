@@ -26,6 +26,14 @@ class BiteAttempt < ActiveRecord::Base
     end
   end
 
+  def self.diseased_monkey_bite(user)
+    create! do |bite|
+      bite.biter  = user
+      bite.target = user
+      bite.result = :success
+    end
+  end
+
   def success?
     result == :success
   end
