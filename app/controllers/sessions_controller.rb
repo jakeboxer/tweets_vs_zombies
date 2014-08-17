@@ -6,4 +6,9 @@ class SessionsController < ApplicationController
 
     redirect_to session.delete(:last_bite_attempt_path) || root_path
   end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: "I wouldn't leave if I were you. DOS is much worse."
+  end
 end
