@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  has_one :zombified_by,
+    -> { where(result: :success) },
+    class_name:  "BiteAttempt",
+    foreign_key: "target_id"
+
   # Error raised if we have problems with credentials when trying to do Twitter
   # stuff.
   class TwitterCredentialsError < StandardError; end
@@ -31,20 +36,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  def biteable?
+  def awake?
     last_tweeted_at.nil? || last_tweeted_at > 12.hours.ago
   end
 
-  def biteable_by?(user, client:)
-    return false if zombie?
-    return false unless biteable?
-
-    friendship = client.friendship(user.username, username)
-    friendship.target.following?
+  def following?(user, client:)
+    client.friendship(user.username, username).target.following?
   end
 
   def sync_with_twitter_if_necessary(client)
-    if biteable?
+    if awake?
       last_tweet = client.user_timeline(username).first
       self.last_tweeted_at = last_tweet.created_at
       save if changed?
@@ -67,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def zombie?
-    true
+    zombified_by.present?
   end
 
   private

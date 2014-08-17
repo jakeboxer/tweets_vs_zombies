@@ -11,13 +11,15 @@ class BitesController < ApplicationController
       }
     end
 
-    user ||= User.from_twitter(current_user.twitter_client.user(sanitized_username))
-    user.sync_with_twitter_if_necessary(current_user.twitter_client)
+    client = current_user.twitter_client
 
-    friendship = current_user.twitter_client.friendship(current_user.username, sanitized_username)
+    user ||= User.from_twitter(client.user(sanitized_username))
+    user.sync_with_twitter_if_necessary(client)
 
-    if user.biteable_by?(current_user, client: current_user.twitter_client)
-      # Bite
+    attempt = BiteAttempt.attempt(current_user, user, client: client)
+
+    if attempt.success?
+      # Show successful bite
     else
       return render "bites/failed", :locals => { :user => user }
     end
