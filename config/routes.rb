@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :bites, only: [:create, :new]
 
+  # Auth
+  get "auth/twitter/callback" => "sessions#create"
+
   root to: "bites#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
