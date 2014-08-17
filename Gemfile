@@ -13,6 +13,8 @@ gem "jbuilder", "~> 2.0"
 gem "omniauth",         "~> 1.2.2"
 gem "omniauth-twitter", "~> 1.0.1"
 
+gem "twitter", "~> 5.11.0"
+
 group :development, :test do
   gem "rspec-rails", "~> 3.0.2"
 end
