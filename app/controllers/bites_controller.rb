@@ -11,6 +11,8 @@ class BitesController < ApplicationController
       }
     end
 
+    return render "bites/zombie_required" unless current_user.zombie?
+
     client = current_user.twitter_client
 
     user ||= User.from_twitter(client.user(sanitized_username))
