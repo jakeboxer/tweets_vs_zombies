@@ -17,3 +17,6 @@
 
 # Ignore vendored gems
 /vendor/ruby
+
+# Ignore dotenv environment variables file
+.env

@@ -1,0 +1,11 @@
+<div class="row">
+  <% if user.present? %>
+  <% else %>
+    <div class="col-md-12 text-center">
+      <h1>No one has bitten @<%= username %> yet!</h1>
+      <p>
+        <a href="/auth/twitter">Sign in with Twitter to bite @<%= username %></a>
+      </p>
+    </div>
+  <% end %>
+</div>

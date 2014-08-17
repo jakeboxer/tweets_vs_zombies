@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Sorry!</h1>
+
+    <h2>
+      @<%= attempt.target.username %>
+
+      <% case attempt.result %>
+      <% when "was_already_zombie" %>
+        is already a zombie.
+      <% when "was_awake" %>
+        has tweeted in the last 12 hours, so they're still awake and prepared for you.
+      <% when "was_not_following_biter" %>
+        isn't following you. You can only bite people who once trusted you.
+      <% else %>
+        couldn't be bitten by you for some reason.
+      <% end %>
+    </h2>
+  </div>
+</div>
