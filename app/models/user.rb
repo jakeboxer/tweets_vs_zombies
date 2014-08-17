@@ -46,8 +46,7 @@ class User < ActiveRecord::Base
 
   def sync_with_twitter_if_necessary(client)
     if awake?
-      last_tweet = client.user_timeline(username).first
-      self.last_tweeted_at = last_tweet.created_at
+      self.last_tweeted_at = client.user_timeline(username).first.created_at
       save if changed?
     end
   end
