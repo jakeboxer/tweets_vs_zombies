@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817002105) do
+ActiveRecord::Schema.define(version: 20140817012037) do
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 20140817002105) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "twitter_uid"
+    t.string   "consumer_key"
+    t.string   "consumer_secret"
+    t.string   "access_token"
+    t.string   "access_token_secret"
   end
 
   add_index "users", ["twitter_uid"], name: "index_users_on_twitter_uid", unique: true
