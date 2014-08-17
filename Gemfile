@@ -17,6 +17,7 @@ gem "twitter", "~> 5.11.0"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0.2"
+  gem "awesome_print", "~> 1.2.0"
 end
 
 group :development do

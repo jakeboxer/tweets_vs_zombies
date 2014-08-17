@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    awesome_print (1.2.0)
     buftok (0.2.0)
     builder (3.2.2)
     coffee-rails (4.0.1)
@@ -210,6 +211,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print (~> 1.2.0)
   coffee-rails (~> 4.0.0)
   dotenv-rails (~> 0.11.1)
   jbuilder (~> 2.0)
