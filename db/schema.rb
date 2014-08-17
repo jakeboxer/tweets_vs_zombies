@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817012037) do
+ActiveRecord::Schema.define(version: 20140817033014) do
+
+  create_table "bite_attempts", force: true do |t|
+    t.integer  "target_id",  null: false
+    t.integer  "biter_id",   null: false
+    t.integer  "result",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bite_attempts", ["biter_id"], name: "index_bite_attempts_on_biter_id"
+  add_index "bite_attempts", ["result"], name: "index_bite_attempts_on_result"
+  add_index "bite_attempts", ["target_id"], name: "index_bite_attempts_on_target_id"
 
   create_table "users", force: true do |t|
     t.string   "username"
