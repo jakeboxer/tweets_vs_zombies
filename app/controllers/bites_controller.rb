@@ -1,5 +1,8 @@
 class BitesController < ApplicationController
   def create
+    # unless logged_in?
+    session[:last_bite_attempt_path] = bites_path(username: sanitized_username) unless false
+
     user = User.find_by(:username, sanitized_username)
 
     render "bites/sign_in", :locals => {

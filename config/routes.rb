@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :bites, only: [:create, :new]
+  resources :bites, only: [:create, :new] do
+    collection do
+      get :create
+    end
+  end
 
   # Auth
   get "auth/twitter/callback" => "sessions#create"

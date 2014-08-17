@@ -8,7 +8,7 @@
   <div class="col-md-4"></div>
 
   <div class="col-md-4">
-    <%= form_tag bites_path @new_bite, html: { :role => "form" } do %>
+    <%= form_tag bites_path, method: :get, html: { :role => "form" } do %>
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-addon">@</div>
