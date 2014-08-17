@@ -9,6 +9,11 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: "I wouldn't leave if I were you. DOS is much worse."
+    flash[:notice] = "I wouldn't leave if I were you. DOS is much worse."
+    redirect_to root_path
+  end
+
+  def failure
+    flash[:notice] = "Twitter auth failed :( my bad probably."
   end
 end

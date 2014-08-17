@@ -35,6 +35,16 @@
       </div>
     </div>
 
+    <% unless flash.empty? -%>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <% flash.each do |flash_type, message| -%>
+            <div class="<%= flash_type %>"><%= message %></div>
+          <% end -%>
+        </div>
+      </div>
+    <% end -%>
+
     <%= yield %>
   </div>
 

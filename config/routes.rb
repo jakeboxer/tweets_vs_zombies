@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   # Auth
   get "auth/twitter/callback" => "sessions#create"
+  get "auth/failure" => "sessions#failure"
   get "sign-out" => "sessions#destroy", as: :sign_out
 
   root to: "bites#new"
