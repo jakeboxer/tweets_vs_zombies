@@ -3,14 +3,17 @@
     <h1>Sorry!</h1>
 
     <h2>
-      @<%= user.username %>
+      @<%= attempt.target.username %>
 
-      <% if user.zombie? %>
+      <% case attempt.result %>
+      <% when "was_already_zombie" %>
         is already a zombie.
-      <% elsif !user.biteable? %>
-        has tweeted in the last 12 hours, so they're still awake and prepared.
-      <% else %>
+      <% when "was_awake" %>
+        has tweeted in the last 12 hours, so they're still awake and prepared for you.
+      <% when "was_not_following_biter" %>
         isn't following you. You can only bite people who once trusted you.
+      <% else %>
+        couldn't be bitten by you for some reason.
       <% end %>
     </h2>
   </div>

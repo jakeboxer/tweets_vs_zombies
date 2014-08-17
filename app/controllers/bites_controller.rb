@@ -23,7 +23,7 @@ class BitesController < ApplicationController
     if attempt.success?
       # Show successful bite
     else
-      return render "bites/failed", :locals => { :user => user }
+      return render "bites/failed", :locals => { :attempt => attempt }
     end
   end
 
